@@ -2,3 +2,5 @@ tensorflow==2.0.1
 tensorflow_hub>=0.6.0
 numpy
 flask
+telebot
+gunicorn
