@@ -37,8 +37,8 @@ def save_image(picture_URL, style_URL):
     style_path = tf.keras.utils.get_file(style_name,style_URL)
     content_image = load_img(content_path)
     style_image = load_img(style_path)
-    hub_module = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/1')
+    hub_module = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
     stylized_image = hub_module(tf.constant(content_image), tf.constant(style_image))[0]
-    tensor_to_image(stylized_image).save("img.png")
-    photo  = open("img.png",'rb')
+    tensor_to_image(stylized_image).save("photo.png")
+    photo  = open("photo.png",'rb')
     return photo

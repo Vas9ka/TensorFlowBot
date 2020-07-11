@@ -1,6 +1,7 @@
 import telebot
 import neuralnetwork
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from flask import Flask, request
 picture_URL = ""
 style_URL = ""
@@ -21,8 +22,6 @@ def help_message(message):
 @bot.message_handler(content_types= ['photo'])
 def handle_photo(message):
     global user_photos
-    global picture_URL
-    global style_URL
     if not user_photos.get(message.chat.id):
         user_photos[message.chat.id] = [1]
         id = message.photo[-1].file_id
@@ -37,7 +36,7 @@ def handle_photo(message):
         print(user_photos)
         bot.send_photo(message.chat.id,neuralnetwork.save_image(user_photos[message.chat.id][1],user_photos[message.chat.id][2]))
         user_photos[message.chat.id].clear()
-
+'''
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
@@ -52,3 +51,6 @@ def webhook():
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+'''
+bot.delete_webhook()
+bot.polling(none_stop=True)
