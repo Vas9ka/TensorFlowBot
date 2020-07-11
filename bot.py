@@ -1,5 +1,5 @@
 import telebot
-#import neuralnetwork
+import neuralnetwork
 import os
 from flask import Flask, request
 picture_URL = ""
@@ -32,9 +32,9 @@ def handle_photo(message):
         style_URL = bot.get_file_url(fileID)
         print(style_URL)
         counter = 0
-        #neuralnetwork.save_image(picture_URL,style_URL)
-        #photo = open('img.png','rb')
-        #bot.send_photo(message.chat.id,photo)
+        neuralnetwork.save_image(picture_URL,style_URL)
+        photo = open('img.png','rb')
+        bot.send_photo(message.chat.id,photo)
 
 
 
