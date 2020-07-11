@@ -4,8 +4,8 @@ import os
 from flask import Flask, request
 picture_URL = ""
 style_URL = ""
-TOKEN = '1376136022:AAHhUQo_rcGMqI7QeJrzwNsm0hwNt4w4vXc'
-bot = telebot.TeleBot('1376136022:AAHhUQo_rcGMqI7QeJrzwNsm0hwNt4w4vXc')
+TOKEN = '1354173088:AAHaseJVed9YIM4VkFW6znKVA8swPoldpWU'
+bot = telebot.TeleBot('1354173088:AAHaseJVed9YIM4VkFW6znKVA8swPoldpWU')
 server = Flask(__name__) 
 counter = 0
 @bot.message_handler(commands=['start']) 
