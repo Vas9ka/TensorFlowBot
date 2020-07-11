@@ -5,3 +5,4 @@ flask
 telebot
 gunicorn
 pyTelegramBotAPI
+pillow
