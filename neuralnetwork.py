@@ -40,5 +40,8 @@ def save_image(picture_URL, style_URL):
     hub_module = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
     stylized_image = hub_module(tf.constant(content_image), tf.constant(style_image))[0]
     tensor_to_image(stylized_image).save("photo.png")
+    del stylized_image
+    del style_image
+    del content_image
     photo  = open("photo.png",'rb')
     return photo
