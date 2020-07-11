@@ -36,7 +36,6 @@ def handle_photo(message):
         print(user_photos)
         bot.send_photo(message.chat.id,neuralnetwork.save_image(user_photos[message.chat.id][1],user_photos[message.chat.id][2]))
         user_photos[message.chat.id].clear()
-'''
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
@@ -51,6 +50,3 @@ def webhook():
 
 if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-'''
-bot.delete_webhook()
-bot.polling(none_stop=True)
