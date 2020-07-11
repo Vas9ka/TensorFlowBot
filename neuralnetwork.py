@@ -1,15 +1,7 @@
 import tensorflow as tf
-import IPython.display as display
 import  tensorflow_hub  as hub
 import numpy as np
 import PIL.Image
-import time
-import functools
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-mpl.rcParams['figure.figsize'] = (12,12)
-mpl.rcParams['axes.grid'] = False
 
 def tensor_to_image(tensor):
   tensor = tensor*255
