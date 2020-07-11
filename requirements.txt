@@ -1,3 +1,4 @@
-django
-gunicorn
-django-heroku
+tensorflow
+tensorflow_hub
+numpy
+PIL.Image
