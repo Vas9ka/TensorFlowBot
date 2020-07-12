@@ -37,5 +37,16 @@ def handle_photo(message):
         bot.send_photo(message.chat.id,neuralnetwork.save_image(user_photos[message.chat.id][1],user_photos[message.chat.id][2]))
         user_photos[message.chat.id].clear()
 
-bot.delete_webhook()
-bot.polling(none_stop=True)
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://tensorflowbot.herokuapp.com/' + TOKEN)
+    return "!", 200
+
+if __name__ == '__main__':
+    server.debug = True
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
