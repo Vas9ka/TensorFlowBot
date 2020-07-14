@@ -32,21 +32,17 @@ def load_img(path_to_img):
   return img
 
 def save_image(picture_URL, style_URL):
+    shutil.rmtree("./cache",ignore_errors=True)
     picture_name = picture_URL[picture_URL.find('file_'):]
     style_name = style_URL[style_URL.find('file_'):]
-    content_path = tf.keras.utils.get_file(picture_name, picture_URL)
+    content_path = tf.keras.utils.get_file(picture_name, picture_URL, cache_dir = './cache')
     style_path = tf.keras.utils.get_file(style_name,style_URL,cache_dir = './cache')
     content_image = load_img(content_path)
     style_image = load_img(style_path)
     hub_module = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
     stylized_image = hub_module(tf.constant(content_image), tf.constant(style_image))[0]
-    if os.path.exists("photo.png"):
-        os.remove("photo.png")
-    shutil.rmtree("./cache",ignore_errors=True)
     tensor_to_image(stylized_image).save("photo.png")
     del stylized_image
     del style_image
     del content_image
-    photo  = open("photo.png",'rb')
     tf.keras.backend.clear_session()
-    return photo
